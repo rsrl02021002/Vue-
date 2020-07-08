@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    第3步：一定要用v-bind 记住格式v-bind:子组件数据名="父组件数据名"-->
+    <div id="app">
+        <mycpn v-bind:cmovies="movie" ></mycpn>
+    </div>
+
+<!--    第4步： 使用马斯达克语法和子组件数据名-->
+    <template id="tem">
+        <div>
+            <h2>{{cmessage}}</h2>
+            <p>{{cmovies}}</p>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        // 第1步：根组件(父组件)的数据movie和message，要传给子组件
+        let app = new Vue({
+            el:"#app",
+            data:{
+                movie:["神话","叶问","功夫"],
+                message:"我看过的电影："
+            },
+            // 第2步：props翻译是属性 通过属性传值 cmovies和cmessage看成子组件的数据名称
+            components:{
+                'mycpn':{
+                    template:'#tem',
+
+                    // 1.数组
+                    // props:["cmovies","cmessage"]
+
+                    // 2.类型限制
+                    // props:{
+                    //     cmovies:Array,
+                    //     cmessage:String,
+                    // }
+
+                    // 3.类型限制 设置默认值 是否必传值
+                    props:{
+                        cmovies:{
+                            type:Array,
+                            // 数组或对象，默认值必须是一个函数
+                            default(){
+                                return []
+                            },
+                            // true要求第3步v-bind必须绑定
+                            required:true
+                        },
+
+                        cmessage:{
+                            type:String,
+                            default:"我是默认值",
+                            required: false
+                        }
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

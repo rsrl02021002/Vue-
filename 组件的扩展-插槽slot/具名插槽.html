@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <mycpn>
+<!--            替换name属性为center的具名插槽-->
+            <span slot="center">哈哈</span>
+<!--            替换普通插槽-->
+            <span>嘤嘤</span>
+        </mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <!--        有name属性的为具名插槽-->
+            <slot name="left"><span>左边</span></slot>
+            <slot name="center"><span>中间</span></slot>
+            <slot name="right"><span>右边</span></slot>
+            <!--        没有name属性，是普通插槽-->
+            <slot><span>默认</span></slot>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el:'#app',
+            components:{
+                mycpn:{
+                    template:'#tem'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

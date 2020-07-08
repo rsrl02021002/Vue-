@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <my-cpn></my-cpn>
+    </div>
+
+    <div id="app2">
+        <my-cpn></my-cpn>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const myComponent = Vue.extend({
+            template:`
+                <div>
+                <h2>我是组件标题</h2>
+                <p>我是组件段落</p>
+                </div>
+            `
+        })
+
+        // 全局组件 特点：可以在多个实例中使用
+        Vue.component('my-cpn',myComponent);
+
+        let app = new Vue({
+            el:"#app"
+        })
+
+        let app2 = new Vue({
+            el:"#app2"
+        })
+    </script>
+</body>
+</html>

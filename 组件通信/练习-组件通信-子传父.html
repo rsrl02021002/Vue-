@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习-组件通信-子传父</title>
+</head>
+<body>
+    <div id="app">
+        <mycpn v-on:item-click="cpnClick"></mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <button v-for="item in categories" v-on:click="btnClick(item)">{{item.name}}</button>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        const mycpn = {
+            template:'#tem',
+            data(){
+                return{
+                    categories:[
+                        {id:10001,name:"大学"},
+                        {id:10002,name:"中学"},
+                        {id:10003,name:"小学"},
+                        {id:10004,name:"幼儿园"}
+                    ]
+                }
+            },
+            methods:{
+                btnClick:function(item){
+                    this.$emit('item-click',item)
+                }
+            }
+        }
+
+        let app = new Vue({
+            el:"#app",
+            components:{
+                mycpn
+            },
+            methods:{
+                cpnClick:function(item){
+                    console.log(item)
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

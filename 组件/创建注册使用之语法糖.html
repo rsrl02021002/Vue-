@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+<!--        mycpn1是实例app的局部组件-->
+        <mycpn1></mycpn1>
+<!--        mycpn2是全局组件-->
+        <mycpn2></mycpn2>
+    </div>
+
+    <div id="app2">
+<!--        无效-->
+        <mycpn1></mycpn1>
+<!--        有效-->
+        <mycpn2></mycpn2>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 传统方法：1.创建组件构造器；2.注册组件；3.使用组件
+        // 语法糖：创建组件构造器和注册组件两步骤，合二为一
+        // 注册全局组件 mycpn2
+        // Vue.component('mycpn2',{
+        //     template:`
+        //         <div>
+        //             <h2>我是组件标题2</h2>
+        //             <p>我是组件段落2</p>
+        //         </div>
+        //     `
+        // })
+
+        // 注册局部组件 mycpn1只能在实例app中使用
+        let app = new Vue({
+            el:"#app",
+            components:{
+                'mycpn1':{
+                    template:`
+                        <div>
+                            <h2>我是组件标题1</h2>
+                            <p>我是组件段落1</p>
+                            <mycpn2></mycpn2>
+                        </div>
+                    `,
+                    components:{
+                        'mycpn2':{
+                            template:`
+                                <div>
+                                    <h2>我是组件标题2</h2>
+                                    <p>我是组件段落2</p>
+                                </div>
+                            `
+                        }
+                    }
+                }
+            }
+        })
+
+        let app2 = new Vue({
+            el:"#app2"
+        })
+    </script>
+</body>
+</html>

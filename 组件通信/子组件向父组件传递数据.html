@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <mycpn v-on:item-click="cpnClick"></mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <button v-for="item in categories" v-on:click="btnClick(item)">{{item.name}}</button>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const mycpn ={
+            template:"#tem",
+            data(){
+                return{
+                    categories:[
+                        {id:"aaa",name:"电脑"},
+                        {id:"bbb",name:"手机"},
+                        {id:"ccc",name:"相机"}
+                    ]
+                }
+            },
+            methods:{
+                btnClick:function(item){
+                    // 目的：将item 传给父组件
+                    // 点击按钮->触发btnClick事件->发射出去itemClick事件->父组件接收事件（监听事件）
+                    //itemClick事件是自定义事件
+                    this.$emit('item-click',item)
+                }
+            }
+        }
+
+        let app = new Vue({
+            el:"#app",
+            components:{
+                mycpn
+            },
+            methods:{
+                cpnClick:function(item){
+                    console.log(item.id)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

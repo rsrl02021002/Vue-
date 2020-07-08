@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+<!--        2.多个标签替换到一个插槽中，可以-->
+        <mycpn>
+            <i>我是斜体内容</i>
+            <b>我是加粗的内容</b>
+            <button>按钮</button>
+        </mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <h2>我是组件标题</h2>
+            <p>我是组件内容</p>
+            <slot></slot>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            components:{
+                mycpn:{
+                    template:'#tem'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

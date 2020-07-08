@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <mycpn></mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <h2>我是组件标题</h2>
+            <p>我是组件段落,模板分离</p>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            components:{
+                'mycpn':{
+                    template:'#tem'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

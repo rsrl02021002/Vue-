@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <mycpn></mycpn>
+        <mycpn></mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <h2>当前数值{{counter}}</h2>
+            <div>
+                <button @click="addCount">+</button>
+                <button @click="decCount">-</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.component('mycpn',{
+            template:"#tem",
+            data(){
+                return{
+                    counter:0
+                }
+            },
+            // 记得不牢，多看看
+            methods:{
+                addCount:function(){
+                    this.counter++
+                },
+                decCount:function(){
+                    this.counter--
+                }
+            }
+        })
+
+        let app = new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

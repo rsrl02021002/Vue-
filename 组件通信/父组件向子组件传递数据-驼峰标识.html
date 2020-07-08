@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+<!--        报错 v-bind不支持驼峰命名 请关注后续Vue更新 仅此处受影响，其他地方使用驼峰命名不受影响-->
+<!--        <mycpn v-bind:cStudent="student" v-bind:cMessage="message"></mycpn>-->
+<!--        在v-bind中用c-Student，效果同cStudent  用c-Message，效果同cMessage-->
+        <mycpn v-bind:c-Student="student" v-bind:c-Message="message"></mycpn>
+    </div>
+
+    <template id="tem">
+        <div>
+            <h2>{{cMessage}}</h2>
+            <p>{{cStudent}}</p>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const mycpn = {
+            template:"#tem",
+            props:{
+                cStudent:{
+                    type:Object,
+                    default(){
+                        return {}
+                    }
+                },
+                cMessage:{
+                    type:String,
+                    default:"暂时没有信息"
+                }
+            }
+        }
+
+        let app = new Vue({
+            el:"#app",
+            data:{
+                student:{
+                    name:"Danny",
+                    age:20,
+                    sex:"male"
+                },
+                message:"这是一条消息"
+            },
+            components:{
+                mycpn
+            }
+        })
+    </script>
+
+</body>
+</html>
